@@ -4,8 +4,13 @@ FROM n8nio/n8n:latest
 # Install Chromium dependencies
 USER root
 
+<<<<<<< HEAD
+=======
+# Install Chromium dependencies
+>>>>>>> 31996e2a0eff04ae486ef5cb538395d549f60daf
 RUN apt-get update && apt-get install -y \
-    chromium \
+    wget \
+    ca-certificates \
     fonts-liberation \
     libappindicator3-1 \
     libasound2 \
@@ -26,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-0 \
     libxtst6 \
     libxss1 \
+<<<<<<< HEAD
     libx11-xcb1 \
     libdrm2 \
     libxshmfence1 \
@@ -35,6 +41,20 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+=======
+    libnss3-dev \
+    libx11-xcb1 \
+    libdbus-glib-1-2 \
+    libnss3 \
+    libxshmfence1 \
+    libgdk-pixbuf2.0-0 \
+    libdrm2 \
+    libgbm-dev \
+    libgcrypt20 \
+    libudev1 \
+    && apt-get clean
+
+>>>>>>> 31996e2a0eff04ae486ef5cb538395d549f60daf
 
 # Set Puppeteer to use installed Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
