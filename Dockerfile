@@ -1,3 +1,5 @@
+n8nio/n8n
+
 FROM node:18-slim
 
 # Install Chromium and dependencies
