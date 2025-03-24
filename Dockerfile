@@ -1,6 +1,5 @@
-n8nio/n8n
-
-FROM node:18-slim
+# Use the official n8n image as the base image
+FROM n8nio/n8n
 
 # Install Chromium and dependencies
 RUN apt-get update && apt-get install -y \
@@ -20,14 +19,17 @@ RUN apt-get update && apt-get install -y \
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV NODE_ENV=production
 
-# Create app directory
+# Install Puppeteer (needed for n8n's browser automation)
+RUN npm install puppeteer
+
+# Set the working directory for n8n
 WORKDIR /data
 
-# Install n8n globally
-RUN npm install -g n8n
-
-# Expose default n8n port
+# Expose the default n8n port
 EXPOSE 5678
+
+# Create a volume for persistent n8n data
+VOLUME ["/data"]
 
 # Start n8n
 CMD ["n8n"]
